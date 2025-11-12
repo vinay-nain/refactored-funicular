@@ -1,0 +1,123 @@
+#tabs-container {
+    width: 100%;
+    margin: 0.4rem 0;
+    padding: 0;
+}
+
+#tabs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 4px;
+    border-bottom: 1px solid #e6e7eb;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid #e0e6ec;
+    border-radius: 6px;
+    padding: 3px 6px;
+    transition: transform 0.06s ease, background 0.1s;
+    overflow: hidden;
+    min-width: 56px;
+}
+
+.tab-btn.active,
+.tab-btn[style*="rgba(185"] {
+    background: #f3f4f6;
+    border-color: #d0d6dd;
+    transform: translateY(-1px);
+}
+
+#tabs button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+    height: 28px;
+}
+
+.tab-name {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.88rem;
+    padding: 0 4px;
+    width: 100px;
+    min-width: 56px;
+    color: #0f1724;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.tab-name:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.06);
+    border-radius: 4px;
+}
+
+#tabs .close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.08s, color 0.08s;
+}
+
+#add-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #eef4ff;
+    color: #0f1724;
+    border: 1px solid #dbeafe;
+    cursor: pointer;
+    transition: transform 0.06s, background 0.08s;
+}
+
+#add-tab:hover {
+    transform: translateY(-1px);
+    background: #e6efff;
+}
+
+@media (min-width: 420px) {
+    .tab-btn {
+        min-width: 80px;
+    }
+    .tab-name {
+        width: 120px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .tab-btn {
+        gap: 4px;
+        padding: 3px;
+        min-width: 64px;
+    }
+    .tab-name {
+        width: 86px;
+        font-size: 0.82rem;
+    }
+    #add-tab {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+@media (max-width: 760px) {
+    .tab-btn {
+        flex: 1 1 auto;
+    }
+}

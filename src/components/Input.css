@@ -1,0 +1,230 @@
+:root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --border: #e5e7eb;
+    --text: #0f1724;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --radius: 8px;
+    --gap: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: var(--bg);
+    color: var(--text);
+}
+
+#input-container {
+    width: 100%;
+    padding: 1rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    width: 100%;
+}
+
+#f-1 {
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#f-1 select,
+#f-1 .method {
+    flex: 0 0 120px;
+    min-width: 120px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+#f-1 input#url {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+#f-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+#f-2 h2 {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+}
+
+#f-2 input[name="key"],
+#f-2 input[name="value"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+#f-2 {
+    width: 100%;
+}
+
+#f-2 input[name="key"],
+#f-2 input[name="value"],
+#f-2 #params-btn {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#f-2 #params-btn {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    cursor: pointer;
+    min-width: 50px;
+}
+
+#f-2 #params-btn:hover {
+    background: #f1f5f9;
+}
+
+@media (max-width: 600px) {
+    #f-2 input[name="key"],
+    #f-2 input[name="value"],
+    #f-2 #params-btn {
+        width: 100%;
+        margin: 0 0 6px 0;
+    }
+}
+
+.params {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.params-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    background: #fff;
+}
+
+.params-table td,
+.params-table th {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.params-table td:first-child {
+    font-weight: 600;
+    width: 35%;
+}
+
+.params-table td:nth-child(2) {
+    color: var(--muted);
+}
+
+.params-table tr:last-child td {
+    border-bottom: none;
+}
+
+.params-table .close-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+}
+
+#f-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+#f-3 select,
+#f-3 textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+#f-3 textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: ui-monospace, monospace;
+}
+
+.btn {
+    align-self: flex-end;
+    padding: 10px 16px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn:hover {
+    background: #1d4ed8;
+}
+
+form + div {
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: var(--radius);
+    background: #f1f5f9;
+    color: var(--muted);
+    font-family: ui-monospace, monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    width: 100%;
+}
+
+@media (min-width: 900px) {
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gap);
+        align-items: start;
+        width: 100%;
+    }
+    #f-1 {
+        grid-column: 1 / -1;
+    }
+    #f-2 {
+        grid-column: 1 / 2;
+    }
+    #f-3 {
+        grid-column: 2 / 3;
+    }
+    .btn {
+        grid-column: 2 / 3;
+        justify-self: end;
+    }
+}
