@@ -1,11 +1,13 @@
 :root {
-    --bg: #f8fafc;
-    --surface: #ffffff;
-    --border: #e5e7eb;
-    --text: #0f1724;
-    --muted: #6b7280;
-    --accent: #2563eb;
-    --radius: 8px;
+    --bg: #000000;         /* pure black background */
+    --surface: #111111;    /* dark gray panels */
+    --surface-2: #1a1a1a;  /* slightly lighter gray */
+    --border: #2e2e2e;     /* mid-gray borders */
+    --text: #ffffff;       /* white text */
+    --muted: #b3b3b3;      /* muted gray */
+    --accent: #2563eb;     /* blue accent */
+    --accent-hover: #1d4ed8;
+    --radius: 6px;
     --gap: 12px;
 }
 
@@ -21,6 +23,7 @@ body {
     color: var(--text);
 }
 
+/* Input container (panel) */
 #input-container {
     width: 100%;
     padding: 1rem;
@@ -29,6 +32,7 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+/* Form structure */
 form {
     display: flex;
     flex-direction: column;
@@ -36,6 +40,7 @@ form {
     width: 100%;
 }
 
+/* First row */
 #f-1 {
     display: flex;
     gap: var(--gap);
@@ -44,6 +49,7 @@ form {
     width: 100%;
 }
 
+/* Selects and method button */
 #f-1 select,
 #f-1 .method {
     flex: 0 0 120px;
@@ -51,17 +57,22 @@ form {
     padding: 10px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: #fff;
+    background: var(--surface-2);
+    color: var(--text);
 }
 
+/* URL input */
 #f-1 input#url {
     flex: 1 1 auto;
     width: 100%;
     padding: 10px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    background: var(--surface-2);
+    color: var(--text);
 }
 
+/* Params area */
 #f-2 {
     display: flex;
     flex-direction: column;
@@ -75,39 +86,32 @@ form {
     margin-bottom: 0.25rem;
 }
 
+/* key/value inputs */
 #f-2 input[name="key"],
 #f-2 input[name="value"] {
     flex: 1;
     padding: 10px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: #fff;
-}
-
-#f-2 {
-    width: 100%;
-}
-
-#f-2 input[name="key"],
-#f-2 input[name="value"],
-#f-2 #params-btn {
-    display: inline-block;
-    vertical-align: middle;
+    background: var(--surface-2);
+    color: var(--text);
 }
 
 #f-2 #params-btn {
     padding: 10px 12px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: #fff;
+    background: var(--surface-2);
+    color: var(--text);
     cursor: pointer;
     min-width: 50px;
 }
 
 #f-2 #params-btn:hover {
-    background: #f1f5f9;
+    background: var(--surface);
 }
 
+/* Mobile stacking for param inputs */
 @media (max-width: 600px) {
     #f-2 input[name="key"],
     #f-2 input[name="value"],
@@ -117,6 +121,7 @@ form {
     }
 }
 
+/* Params table */
 .params {
     width: 100%;
     overflow-x: auto;
@@ -127,7 +132,8 @@ form {
     border-collapse: collapse;
     font-size: 14px;
     border: 1px solid var(--border);
-    background: #fff;
+    background: var(--surface);
+    color: var(--text);
 }
 
 .params-table td,
@@ -156,6 +162,7 @@ form {
     color: var(--muted);
 }
 
+/* Body / request body area */
 #f-3 {
     display: flex;
     flex-direction: column;
@@ -169,7 +176,8 @@ form {
     padding: 10px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: #fff;
+    background: var(--surface-2);
+    color: var(--text);
 }
 
 #f-3 textarea {
@@ -178,6 +186,7 @@ form {
     font-family: ui-monospace, monospace;
 }
 
+/* Primary button */
 .btn {
     align-self: flex-end;
     padding: 10px 16px;
@@ -191,14 +200,15 @@ form {
 }
 
 .btn:hover {
-    background: #1d4ed8;
+    background: var(--accent-hover);
 }
 
+/* Response / output block */
 form + div {
     margin-top: 8px;
     padding: 10px;
     border-radius: var(--radius);
-    background: #f1f5f9;
+    background: var(--surface-2);
     color: var(--muted);
     font-family: ui-monospace, monospace;
     white-space: pre-wrap;
@@ -206,25 +216,75 @@ form + div {
     width: 100%;
 }
 
+/* Desktop layout */
 @media (min-width: 900px) {
     form {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--gap);
         align-items: start;
-        width: 100%;
     }
-    #f-1 {
-        grid-column: 1 / -1;
-    }
-    #f-2 {
-        grid-column: 1 / 2;
-    }
-    #f-3 {
-        grid-column: 2 / 3;
-    }
-    .btn {
-        grid-column: 2 / 3;
-        justify-self: end;
-    }
+    #f-1 { grid-column: 1 / -1; }
+    #f-2 { grid-column: 1 / 2; }
+    #f-3 { grid-column: 2 / 3; }
+    .btn { grid-column: 2 / 3; justify-self: end; }
+}
+
+.response {
+    height: 2.5rem;
+}
+
+/* Response box: same background as other panels, rounded corners, padding */
+.response {
+    background: var(--surface-2);    /* same surface used elsewhere */
+    border: 1px solid var(--border); /* subtle border */
+    border-radius: var(--radius);
+    padding: 12px;                   /* room for header + body */
+    color: var(--text);
+    width: 100%;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* remove fixed height so JSON can expand */
+    min-height: 2.5rem;
+}
+
+/* Header row inside the same box */
+.response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .9rem;
+    color: var(--text); /* overwritten inline by status color where needed */
+}
+
+/* Status label and time label */
+.response-header .label {
+    color: #ffffff;   /* labels like "Status:" and "Time:" */
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+/* small colored dot next to status */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 6px;
+}
+
+/* Response body: monospace, scrollable horizontally if large */
+.response-body {
+    font-family: ui-monospace, monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--muted);     /* body text muted for contrast */
+    background: transparent; /* same bg as parent */
+    margin: 0;
+    padding: 0;              /* padding already on parent */
+    max-height: 48vh;        /* avoid taking entire screen */
+    overflow: auto;
+    border-radius: calc(var(--radius) - 2px);
 }
