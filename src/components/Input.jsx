@@ -1,17 +1,8 @@
 import { useEffect, useState, useRef } from "react";
+import Response from "./Response";
 import axios from "axios";
 import Method from "./Method";
 import "./Input.css";
-
-function getStatusColor(status) {
-    if (status >= 100 && status < 200) return "#64748B";
-    if (status >= 200 && status < 300) return "#22C55E";
-    if (status >= 300 && status < 400) return "#3B82F6";
-    if (status >= 400 && status < 500) return "#F97316";
-    if (status >= 500 && status < 600) return "#EF4444";
-
-    return "#9CA3AF";
-}
 
 export default function Input({ tabId, data = {}, onChangeData }) {
     const [method, setMethod] = useState(data.method || "GET");
@@ -255,39 +246,7 @@ export default function Input({ tabId, data = {}, onChangeData }) {
                     Send
                 </button>
             </form>
-            <div className="response">
-                <div
-                    className="response-header"
-                    style={{
-                        color: getStatusColor(response?.status),
-                        fontSize: ".7rem",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                    }}
-                >
-                    <span style={{ color: "white" }}>Status:</span>
-                    <span>{response?.status}</span>
-                    {response && (
-                        <i
-                            className="fa-solid fa-circle"
-                            style={{ fontSize: ".4rem" }}
-                        ></i>
-                    )}
-                    <span style={{ color: "white", marginLeft: "16px" }}>
-                        Time:
-                    </span>
-                    <span>{Math.round(responseTime)}ms</span>
-                </div>
-                <div
-                    style={{
-                        marginTop: "6px",
-                        fontFamily: "ui-monospace, monospace",
-                    }}
-                >
-                    {JSON.stringify(response?.data, null, 2)}
-                </div>
-            </div>
+            <Response response={response} time={responseTime} error={error} />
         </div>
     );
 }

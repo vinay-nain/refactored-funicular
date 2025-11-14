@@ -1,0 +1,52 @@
+.response {
+    height: 2.5rem;
+}
+
+.response {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    color: var(--text);
+    width: 100%;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 2.5rem;
+}
+
+.response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .9rem;
+    color: var(--text);
+}
+
+.response-header .label {
+    color: #ffffff;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 6px;
+}
+
+.response-body {
+    font-family: ui-monospace, monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--muted);
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    max-height: 48vh;
+    overflow: auto;
+    border-radius: calc(var(--radius) - 2px);
+}
