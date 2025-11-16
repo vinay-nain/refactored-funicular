@@ -1,4 +1,22 @@
-import React from "react";
+function getType(data, headers) {
+    const contentType = headers?.["content-type"]?.toLowerCase() || "";
+    if (contentType.includes("application/json")) return "json";
+    if (contentType.includes("text/html")) return "html";
+    if (contentType.includes("text/plain")) return "text";
+    return "unknown";
+}
+
+function JsonView({ data }) {
+    return <pre>{JSON.stringify(data, null, 4)}</pre>;
+}
+
+function HtmlView({ data }) {
+    return <iframe srcDoc={data} sandbox="" />;
+}
+
+function TextView({ data }) {
+    return <pre>{data}</pre>;
+}
 
 function getStatusColor(status) {
     if (status >= 100 && status < 200) return "gray";
@@ -14,6 +32,26 @@ export default function Response({ response, time, error }) {
     const status = isError ? error?.response?.status : response?.status;
     const data = isError ? error?.response?.data : response?.data;
     const statusColor = getStatusColor(status);
+    const type = getType(data, response?.headers);
+
+    const renderPreview = () => {
+        switch (type) {
+            case "json":
+                return <JsonView data={data} />;
+            case "text":
+                return <TextView data={data} />;
+            case "html":
+                return <HtmlView data={data} />;
+            default:
+                return (
+                    <pre>
+                        {typeof data === "string"
+                            ? data
+                            : JSON.stringify(data, null, 2)}
+                    </pre>
+                );
+        }
+    };
 
     return (
         <div>
@@ -46,14 +84,14 @@ export default function Response({ response, time, error }) {
                     </span>
                     <span>{Math.round(time)}ms</span>
                 </div>
-
                 <div
                     style={{
                         marginTop: "6px",
                         whiteSpace: "pre-wrap",
+                        width: "100%",
                     }}
                 >
-                    {data && JSON.stringify(data, null, 2)}
+                    {renderPreview()}
                 </div>
             </div>
         </div>
